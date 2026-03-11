@@ -1,10 +1,35 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
+
 
 export default function App() {
-  return (
+
+  const[contador, setContador] = useState(0);
+
+  function diminuirContagem(){
+    if (contador > 0){
+    setContador(contador - 1);
+    }
+    
+  }
+
+return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>Contador de valores: </Text>
+      
+      
+      <Text>{contador}</Text>
+      
+      <View style = {{flexDirection:'row', marginTop: 10, marginHorizontal: 30}}>
+      <Button 
+        title='Aumentar' onPress={() => setContador(contador + 1)} 
+      />
+      <Button 
+        title='Diminuir' onPress={diminuirContagem} 
+      />
+      </View>
+      
       <StatusBar style="auto" />
     </View>
   );
