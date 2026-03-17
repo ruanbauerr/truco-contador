@@ -1,46 +1,45 @@
 import { useState } from "react";
 import { Button, Text, View } from "react-native";
 
-export default function Contador({ titulo }) {
-  const [contador, setContador] = useState(0);
-  const [ganhou, setGanhou] = useState(0);
+export default function Contador({ contador, titulo, setContador, ganhou, setGanhou }) {
+
+
 
   function verificarVitoria(pontos) {
-  if (contador + pontos >= 12) {
-    setGanhou(ganhou + 1);
-    setContador(0);
-  } else {
-    setContador(contador + pontos);
+    if (contador + pontos >= 12) {
+      setGanhou(ganhou + 1);
+      setContador(0);
+    } else {
+      setContador(contador + pontos);
+    }
   }
-}
 
- function aumentarContagem() {
-  verificarVitoria(1);
-}
-
-function diminuirContagem() {
-  if (contador > 0) {
-    setContador(contador - 1);
+  function aumentarContagem() {
+    verificarVitoria(1);
   }
-}
 
-function truco() {
-  verificarVitoria(3);
-}
+  function diminuirContagem() {
+    if (contador > 0) {
+      setContador(contador - 1);
+    }
+  }
 
-function seis() {
-  verificarVitoria(6);
-}
+  function truco() {
+    verificarVitoria(3);
+  }
 
-function nove() {
-  verificarVitoria(9);
-}
+  function seis() {
+    verificarVitoria(6);
+  }
 
-function doze() {
-  verificarVitoria(12);
-}
+  function nove() {
+    verificarVitoria(9);
+  }
 
-  
+  function doze() {
+    verificarVitoria(12);
+  }
+
   return (
     <View style={{ alignItems: "center" }}>
       <Text id="titulo" style={{ fontSize: 18 }}>
