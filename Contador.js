@@ -3,39 +3,44 @@ import { Button, Text, View } from "react-native";
 
 export default function Contador({ titulo }) {
   const [contador, setContador] = useState(0);
+  const [ganhou, setGanhou] = useState(0);
 
-  function aumentarContagem() {
-    if (contador <= 11) {
-      setContador(contador + 1);
-    }
+  function verificarVitoria(pontos) {
+  if (contador + pontos >= 12) {
+    setGanhou(ganhou + 1);
+    setContador(0);
+  } else {
+    setContador(contador + pontos);
   }
+}
 
-  function diminuirContagem() {
-    if (contador > 0) {
-      setContador(contador - 1);
-    }
-  }
-  function truco() {
-    if (contador <= 9) {
-      setContador(contador + 3);
-    }
-  }
-  function seis() {
-    if (contador <= 6) {
-      setContador(contador + 6);
-    }
-  }
-   function nove() {
-    if (contador <= 3) {
-      setContador(contador + 9);
-    }
-  }
+ function aumentarContagem() {
+  verificarVitoria(1);
+}
 
-  function doze() {
-    if (contador < 1) {
-      setContador(contador + 12);
-    }
+function diminuirContagem() {
+  if (contador > 0) {
+    setContador(contador - 1);
   }
+}
+
+function truco() {
+  verificarVitoria(3);
+}
+
+function seis() {
+  verificarVitoria(6);
+}
+
+function nove() {
+  verificarVitoria(9);
+}
+
+function doze() {
+  verificarVitoria(12);
+}
+
+  
   return (
     <View style={{ alignItems: "center" }}>
       <Text id="titulo" style={{ fontSize: 18 }}>
@@ -43,6 +48,7 @@ export default function Contador({ titulo }) {
       </Text>
 
       <Text style={{ fontSize: 70 }}>{contador}</Text>
+      <Text>Ganhou {ganhou}</Text>
 
       <View style={{ flexDirection: "row", marginTop: 10 }}>
         <View style={{ width: 70, marginRight: 10 }}>
