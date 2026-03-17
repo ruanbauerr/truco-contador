@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { Button, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 
-export default function Contador({ contador, titulo, setContador, ganhou, setGanhou }) {
-
-
-
+export default function Contador({
+  contador,
+  titulo,
+  setContador,
+  ganhou,
+  setGanhou,
+}) {
   function verificarVitoria(pontos) {
     if (contador + pontos >= 12) {
       setGanhou(ganhou + 1);
@@ -41,38 +45,77 @@ export default function Contador({ contador, titulo, setContador, ganhou, setGan
   }
 
   return (
-    <View style={{ alignItems: "center" }}>
-      <Text id="titulo" style={{ fontSize: 18 }}>
-        {titulo}
-      </Text>
+    <View style={styles.container}>
+      <Text style={styles.titulo}>{titulo}</Text>
 
-      <Text style={{ fontSize: 70 }}>{contador}</Text>
-      <Text>Ganhou {ganhou}</Text>
+      <Text style={styles.contador}>{contador}</Text>
 
-      <View style={{ flexDirection: "row", marginTop: 10 }}>
-        <View style={{ width: 70, marginRight: 10 }}>
-          <Button title="+" color="#41e405" onPress={aumentarContagem} />
+      <Text style={styles.ganhou}>Ganhou {ganhou}</Text>
+
+      <View style={styles.linhaBotoes}>
+        <View style={styles.botaoPequeno}>
+          <Button title="+" color="#2ecc71" onPress={aumentarContagem} />
         </View>
 
-        <View style={{ width: 70 }}>
-          <Button title="-" color="#cb0404" onPress={diminuirContagem} />
+        <View style={styles.botaoPequeno}>
+          <Button title="-" color="#e74c3c" onPress={diminuirContagem} />
         </View>
       </View>
-      <View style={{ flexDirection: "row", marginRight: 10 }}>
-        <Button title="TRUCO" color="#3ee4be" onPress={truco} />
+
+      <View style={styles.botaoGrande}>
+        <Button title="TRUCO" color="#1abc9c" onPress={truco} />
       </View>
 
-      <View style={{ flexDirection: "row", marginRight: 10 }}>
-        <Button title="SEIIIIS" color="#3e86e4" onPress={seis} />
+      <View style={styles.botaoGrande}>
+        <Button title="SEIS" color="#3498db" onPress={seis} />
       </View>
 
-      <View style={{ flexDirection: "row", marginRight: 10 }}>
-        <Button title="NOVEEEE" color="#c8e43e" onPress={nove} />
+      <View style={styles.botaoGrande}>
+        <Button title="NOVE" color="#9b59b6" onPress={nove} />
       </View>
 
-      <View style={{ flexDirection: "row", marginRight: 10 }}>
-        <Button title="DOZEEE" color="#c829e4" onPress={doze} />
+      <View style={styles.botaoGrande}>
+        <Button title="DOZE" color="#c0392b" onPress={doze} />
       </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    width: 140,
+  },
+
+  titulo: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: 5,
+  },
+
+  contador: {
+    fontSize: 60,
+    fontWeight: "bold",
+    marginVertical: 5,
+  },
+
+  ganhou: {
+    fontSize: 14,
+    marginBottom: 10,
+  },
+
+  linhaBotoes: {
+    flexDirection: "row",
+    marginBottom: 10,
+  },
+
+  botaoPequeno: {
+    width: 55,
+    marginHorizontal: 5,
+  },
+
+  botaoGrande: {
+    width: 120,
+    marginVertical: 3,
+  },
+});
